@@ -28,9 +28,9 @@ cl = tfh.geojson_to_numpy(centerline)
 cl_utm = tfh.convert_crs(cl, data_crs, local_crs)
 
 for f in gtiffs:
-    vel_reg = re.findall(r'\d+',f)
+    vel_reg = re.findall(r'\D(\d{8})\D',f)
     vel_start = datetime.strptime(vel_reg[0], '%Y%m%d')
-    vel_end = datetime.strptime(vel_reg[2], '%Y%m%d')
+    vel_end = datetime.strptime(vel_reg[1], '%Y%m%d')
     vel_date = vel_start + (vel_end - vel_start)/2
     # get terminus position corresponding to start date (vel_start)
     tmns_fp = path + 'terminus' + vel_reg[0] +'.geojson'
