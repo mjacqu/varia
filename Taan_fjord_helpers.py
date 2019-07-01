@@ -31,16 +31,18 @@ def geojson_to_numpy(path):
 
 
 
-def convert_crs(coordinates, srs_crs, dst_crs):
+def convert_crs(coordinates, src_crs, dst_crs):
     '''
+    Converts array of coordinates between src_crs and dst_crs.
+
     Arguments:
         coordinates (array): array of coordinates to reproject
-        orig_crs, dst_crs (str): crs EPSG code
+        src_crs, dst_crs (str): crs EPSG code
 
     Returns:
         array: reprojected coordinates
     '''
-    orig_crs = pyproj.Proj('+init='+srs_crs)
+    orig_crs = pyproj.Proj('+init='+src_crs)
     dest_crs = pyproj.Proj('+init='+dst_crs)
     reproj = np.zeros((len(coordinates),2))
     for i in range(0, len(coordinates)):
