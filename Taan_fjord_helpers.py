@@ -70,9 +70,9 @@ def find_intersect(line1, line2):
 
 def get_points_on_line(line2cut, cutwith, dist):
     '''
-    Splits center line at terminus and returns array with distances and coor-
-    dinates of distances.
-    NOTE: Requires centerline to be traced from terminus upstream, not vice versa.
+    Splits line2cut with cutwith line and returns array of coordinates of points
+    at distances listed in dist.
+    NOTE: Distances calculated in direction in which line was originally traced.
 
     Arguments:
         line2cut (array): coordinates of line to be cut
@@ -80,6 +80,7 @@ def get_points_on_line(line2cut, cutwith, dist):
         dist (list): list of distances
 
     Returns:
+        GeometryCollection: of new cut line
         array: coordinates of selected points (x, y)
     '''
     ln1 = LineString(line2cut)
@@ -166,7 +167,7 @@ def median_of_circle(fp, point, pt_crs, r_circ, line = None):
     #reproject circle to crs of image
     circ_poly_coords = np.array(circ_poly.exterior.coords)
     circ_reproj = np.zeros((len(circ_poly_coords),2))
-    with rasterio.open(path + "GeoTiff-BigTiff_20190108T154850_20190120_Orb_Stack_vel.tif") as src:
+    with rasterio.open(fp) as src:
         img_crs = pyproj.Proj(src.crs) # Pass CRS of image from rasterio
         pt_crs = pyproj.Proj(init=pt_crs)
         for i in range(0, len(circ_reproj)):
