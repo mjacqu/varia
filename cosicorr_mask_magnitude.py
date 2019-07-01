@@ -21,7 +21,6 @@ print ('output   =', inps.dst)
 SNR = inps.snr
 in_file = inps.src
 
-rasterio.open(in_file, mode='r', driver='ENVI')
 with rasterio.open(in_file, mode='r', driver='ENVI') as src:
     data = src.read()
     metadata = src.profile
