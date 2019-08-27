@@ -139,7 +139,7 @@ def median_of_circle(fp, point, pt_crs, r_circ, line = None):
         fp (str): filepath to GeoTiff
         point (array): x,y coordinates in pt_crs of point P.
         pt_crs (str): EPSG-code of point coordinate reference system
-        l_side (int): radius in meters arount point to derive median value from.
+        l_side (int): radius in meters around point to derive median value from.
 
     Optional argument:
         line (array): ndarray with coordinates of a polyline.
