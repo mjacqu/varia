@@ -113,7 +113,7 @@ def median_of_square(fp, point, pt_crs, l_side):
         float: median value of all points within defined square
     '''
     #import tiff and get row, col index of wanted point
-    with rasterio.open(path + "GeoTiff-BigTiff_20190108T154850_20190120_Orb_Stack_vel.tif") as src:
+    with rasterio.open(fp) as src:
         # Use pyproj to convert point coordinates
         img_crs = pyproj.Proj(src.crs) # Pass CRS of image from rasterio
         pt_crs = pyproj.Proj(init=pt_crs)
