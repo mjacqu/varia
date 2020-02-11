@@ -33,7 +33,7 @@ data = np.concatenate((data, magnitude), axis = 0)
 metadata['driver'] = 'GTiff'
 metadata['count'] = 4
 
-with rasterio.open(inps.dst, 'w', **metadata) as dst:
+with rasterio.open('test_masked', 'w', **metadata) as dst:
     dst.set_band_description(1, 'East-West masked')
     dst.set_band_description(2, 'North-South masked')
     dst.set_band_description(3, 'SNR')
